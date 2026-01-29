@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
@@ -9,6 +10,8 @@ import CreateOTCDeal from './pages/CreateOTCDeal';
 import MyOTCDeals from './pages/MyOTCDeals';
 import Activity from './pages/Activity';
 import Profile from './pages/Profile';
+import PublicProfile from './pages/PublicProfile';
+import Community from './pages/Community';
 import Settings from './pages/Settings';
 import NFTDetail from './pages/NFTDetail';
 import NFTPurchase from './pages/NFTPurchase';
@@ -19,6 +22,7 @@ import DAO from './pages/DAO';
 import History from './pages/History';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Reports from './pages/Reports';
 
 const App: React.FC = () => {
   // Authentication State
@@ -50,6 +54,7 @@ const App: React.FC = () => {
         {/* Protected Routes */}
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/explore" element={<ProtectedRoute><Explore /></ProtectedRoute>} />
+        <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
         
         {/* OTC Routes */}
         <Route path="/otc" element={<ProtectedRoute><OTC /></ProtectedRoute>} />
@@ -63,8 +68,9 @@ const App: React.FC = () => {
         <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
         <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
         
-        {/* Main Profile (Public View - but in this context, only accessible after login) */}
+        {/* Profile Routes */}
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/u/:username" element={<ProtectedRoute><PublicProfile /></ProtectedRoute>} />
         
         {/* Profile Management Routes */}
         <Route path="/profile/my-nfts" element={<ProtectedRoute><MyAccount section="my-nfts" /></ProtectedRoute>} />
@@ -81,6 +87,9 @@ const App: React.FC = () => {
         <Route path="/profile/list-nft/:id" element={<ProtectedRoute><NFTManagement action="list" /></ProtectedRoute>} />
         <Route path="/profile/transfer/:id" element={<ProtectedRoute><NFTManagement action="transfer" /></ProtectedRoute>} />
         <Route path="/profile/withdraw" element={<ProtectedRoute><NFTManagement action="withdraw" /></ProtectedRoute>} />
+
+        {/* Reports Standalone Route */}
+        <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
 
         {/* Settings Sub-routes */}
         <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
